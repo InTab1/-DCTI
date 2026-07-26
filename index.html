@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DCTI | Dose Career Type Indicator</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<main class="container">
+
+    <!-- 시작 화면 -->
+    <section id="start-screen" class="card">
+
+        <div class="logo">
+            🎯
+        </div>
+
+        <h1>도스고 직업 적성 검사 DCTI</h1>
+
+        <h2>
+            Dose Career Type Indicator
+        </h2>
+
+
+        <p class="intro">
+            성향<br>
+            D / C : 행동형 <-> 창작형<br>
+P / S : 교류형 <-> 독립형<br>
+R / A : 도전형 <-> 안전형<br>
+F / G : 지유형 <-> 성장형<br>
+        </p>
+
+
+        <p class="notice">
+            32개의 질문을 통해<br>
+            당신에게 어울리는 직업과 플레이 스타일을 찾아드립니다.
+        </p>
+
+
+        <button onclick="startTest()">
+            검사 시작하기
+        </button>
+
+
+    </section>
+
+
+
+
+    <!-- 질문 화면 -->
+
+    <section id="test-screen" class="card hidden">
+
+
+        <div class="top">
+
+            <span id="progress-text">
+                1 / 32
+            </span>
+
+            <div class="progress-bar">
+
+                <div id="progress">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <h2 id="question">
+            질문
+        </h2>
+
+
+        <div id="answers">
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+    <!-- 결과 화면 -->
+
+    <section id="result-screen" class="card hidden">
+
+
+        <div class="result-icon">
+            🎉
+        </div>
+
+
+        <h1>
+            검사 완료!
+        </h1>
+
+
+        <h2 id="result-type">
+            TYPE
+        </h2>
+
+
+        <h2 id="result-name">
+            유형명
+        </h2>
+
+
+        <p id="result-desc">
+            설명
+        </p>
+
+
+
+        <div class="job-box">
+
+            <h3>
+                추천 직업
+            </h3>
+
+
+            <p id="result-jobs">
+                
+            </p>
+
+        </div>
+
+
+
+        <button onclick="restartTest()">
+            다시 검사하기
+        </button>
+
+
+    </section>
+
+
+</main>
+
+
+
+
+<script src="questions.js"></script>
+<script src="results.js"></script>
+<script src="script.js"></script>
+
+
+</body>
+</html>
