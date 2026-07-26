@@ -295,10 +295,15 @@ function showResult(){
 
 
 
-        document
+	document
         .getElementById("result-jobs")
         .innerHTML =
         result.jobs.join("<br>");
+
+        document
+        .getElementById("result-government")
+        .innerHTML =
+        result.government?result.government.join("<br>") : "";
 
 
     }
@@ -329,4 +334,30 @@ function restartTest(){
     .remove("hidden");
 
 
+}
+
+// 전체 유형 모달 열기
+function openAllTypesModal() {
+    const container = document.getElementById("all-types-content");
+    container.innerHTML = "";
+
+    for (const [code, info] of Object.entries(results)) {
+        const item = document.createElement("div");
+        item.className = "modal-type-item";
+        
+        item.innerHTML = `
+            <h3 class="modal-type-title">[${code}] ${info.name}</h3>
+            <p class="modal-type-desc">${info.desc}</p>
+            <p class="modal-type-jobs"><strong>추천 직업:</strong> ${info.jobs.join(", ")}</p>
+            <p class="modal-type-jobs" style="color: #93c5fd;"><strong>추천 공무원:</strong> ${info.government ? info.government.join(", ") : "없음"}</p>
+        `;
+        container.appendChild(item);
+    }
+
+    document.getElementById("all-types-modal").classList.remove("hidden");
+}
+
+// 전체 유형 모달 닫기
+function closeAllTypesModal() {
+    document.getElementById("all-types-modal").classList.add("hidden");
 }
