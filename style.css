@@ -566,3 +566,55 @@ h1 {
 .result-icon, #result-screen h1 {
     background: transparent !important;
 }
+
+/* 이스터에그 연출 스타일 */
+.easter-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: pointer;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.easter-content {
+    text-align: center;
+    animation: grandPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.easter-sub {
+    font-size: 18px;
+    letter-spacing: 6px;
+    color: #60a5fa;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.8);
+}
+
+.easter-title {
+    font-size: 56px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #60a5fa, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+    margin: 0;
+}
+
+@keyframes grandPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

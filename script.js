@@ -10,7 +10,7 @@ let scores = {
     R:0,
     A:0,
     F:0,
-    G:0
+    T:0
 };
 
 
@@ -29,7 +29,7 @@ function startTest(){
         R:0,
         A:0,
         F:0,
-        G:0
+        T:0
     };
 
 
@@ -224,7 +224,7 @@ function calculateType(){
 
     else{
 
-        type+="G";
+        type+="T";
 
     }
 
@@ -360,4 +360,28 @@ function openAllTypesModal() {
 // 전체 유형 모달 닫기
 function closeAllTypesModal() {
     document.getElementById("all-types-modal").classList.add("hidden");
+}
+
+// 이스터에그 로직
+let targetClickCount = 0;
+
+function clickTarget() {
+    targetClickCount++;
+
+    // 5번 클릭 시 발동
+    if (targetClickCount === 5) {
+        const modal = document.getElementById('easter-egg-modal');
+        if (modal) {
+            modal.classList.remove('hidden');
+        }
+        targetClickCount = 0; // 카운트 초기화
+    }
+}
+
+// 이스터에그 모달 닫기
+function closeEasterEgg() {
+    const modal = document.getElementById('easter-egg-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+    }
 }
