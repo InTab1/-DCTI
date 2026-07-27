@@ -216,7 +216,7 @@ function calculateType(){
 
     // 자유 vs 성장
 
-    if(scores.F >= scores.G){
+    if(scores.F >= scores.T){
 
         type+="F";
 
