@@ -240,76 +240,75 @@ function calculateType(){
 
 
 
-// 결과 출력
+function cleanJobName(rawName) {
+    if (!rawName) return "";
+    return rawName.replace(/[\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27BF}]|🏛️|💬|🎓|📚|🖼️/gu, '').trim();
+}
 
+function formatJobLinks(jobList) {
+    if (!jobList) return "";
+    return jobList.map(job => {
+        // 이모지나 특수문자가 들어있어도 안전하게 함수로 넘기기 위해 encodeURIComponent 처리
+        let safeTitle = encodeURIComponent(job);
+        return `<span class="job-link" onclick="openJobDetail('${safeTitle}')">${job}</span>`;
+    }).join("<br>");
+}
+// 기존 showResult()를 대신할 새로운 결과 출력 함수
 function showResult(){
 
+    let type = calculateType();
+    let result = results[type];
 
-
-    let type =
-    calculateType();
-
-
-
-    let result =
-    results[type];
-
-
-
-    document
-    .getElementById("test-screen")
-    .classList
-    .add("hidden");
-
-
-
-    document
-    .getElementById("result-screen")
-    .classList
-    .remove("hidden");
-
-
-
-
-    document
-    .getElementById("result-type")
-    .innerText =
-    type;
-
-
+    document.getElementById("test-screen").classList.add("hidden");
+    document.getElementById("result-screen").classList.remove("hidden");
+    document.getElementById("result-type").innerText = type;
 
     if(result){
+        document.getElementById("result-name").innerText = result.name;
+        document.getElementById("result-desc").innerText = result.desc;
 
+        // 👈 일반 직업과 공무원 모두 클릭 가능한 링크로 뿌려줍니다
+        document.getElementById("result-jobs").innerHTML = formatJobLinks(result.jobs);
+        document.getElementById("result-government").innerHTML = formatJobLinks(result.government);
+    } else {
+        document.getElementById("result-name").innerText = "균형 잡힌 올라운더형";
+        document.getElementById("result-desc").innerText = "여러 분야에 관심이 있고 상황에 따라 다양한 역할을 수행하는 타입입니다.";
+        document.getElementById("result-jobs").innerHTML = formatJobLinks(["📚 교사", "🎨 화가", "📰 기자", "🥩 도축업자"]);
+        document.getElementById("result-government").innerHTML = "";
+    }
+}
 
-        document
-        .getElementById("result-name")
-        .innerText =
-        result.name;
-
-
-
-        document
-        .getElementById("result-desc")
-        .innerText =
-        result.desc;
-
-
-
-	document
-        .getElementById("result-jobs")
-        .innerHTML =
-        result.jobs.join("<br>");
-
-        document
-        .getElementById("result-government")
-        .innerHTML =
-        result.government?result.government.join("<br>") : "";
-
-
+function openJobDetail(encodedTitle) {
+    const titleElement = document.getElementById("job-modal-title");
+    const descElement = document.getElementById("job-modal-desc");
+    
+    // 원본 직업 텍스트 복원 (예: "🖼️ 만화가", "🏛️ 공무원(도스 성당, 도스 교회, 도합사)")
+    const fullTitle = decodeURIComponent(encodedTitle);
+    
+    titleElement.innerText = fullTitle;
+    
+    let desc = "";
+    if (typeof jobDescriptions !== 'undefined') {
+        // 1. 원본 텍스트 그대로 찾기
+        desc = jobDescriptions[fullTitle];
+        
+        // 2. 혹시 몰라 앞뒤 공백 제거 후 찾기
+        if (!desc) {
+            desc = jobDescriptions[fullTitle.trim()];
+        }
     }
 
-
-else{ document .getElementById("result-name") .innerText = "균형 잡힌 올라운더형"; document .getElementById("result-desc") .innerText = "여러 분야에 관심이 있고 상황에 따라 다양한 역할을 수행하는 타입입니다."; document .getElementById("result-jobs") .innerHTML = "📚 교사<br>🎨 화가<br>📰 기자<br>🥩 도축업자"; } }
+    if (desc) {
+        descElement.innerText = desc;
+    } else {
+        descElement.innerText = `${fullTitle} 직업에 대한 상세 설명 준비 중입니다.`;
+    }
+    
+    document.getElementById("job-detail-modal").classList.remove("hidden");
+}// 설명 팝업을 닫는 함수
+function closeJobDetailModal() {
+    document.getElementById("job-detail-modal").classList.add("hidden");
+}
 
 
 

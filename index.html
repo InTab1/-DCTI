@@ -2,11 +2,11 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>DCTI | Dose Career Type Indicator</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=1.1">
 
 </head>
 
@@ -61,7 +61,7 @@ F / T : 자유형 <-> 성장형<br>
         <div class="top">
 
             <span id="progress-text">
-                1 / 32
+                1 / 20
             </span>
 
             <div class="progress-bar">
@@ -173,6 +173,8 @@ F / T : 자유형 <-> 성장형<br>
 </div>
 
 
+
+<script src="job_info.js"></script>
 <script src="questions.js"></script>
 <script src="results.js"></script>
 <script src="script.js"></script>
@@ -182,6 +184,14 @@ F / T : 자유형 <-> 성장형<br>
     <div class="easter-content">
         <p class="easter-sub">도스고등학교</p>
         <h1 class="easter-title">InTab1</h1>
+    </div>
+</div>
+<!-- 직업 설명 모달 팝업 -->
+<div id="job-detail-modal" class="modal-backdrop hidden" onclick="closeJobDetailModal()">
+    <div class="card modal-card" onclick="event.stopPropagation()">
+        <h2 id="job-modal-title">직업 이름</h2>
+        <p id="job-modal-desc" style="line-height: 1.8; color: #e5e7eb; margin: 20px 0;">직업 설명 내용</p>
+        <button onclick="closeJobDetailModal()" style="margin-top: 10px;">닫기</button>
     </div>
 </div>
 </body>

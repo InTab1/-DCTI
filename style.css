@@ -618,3 +618,17 @@ h1 {
         transform: scale(1);
     }
 }
+
+/* 클릭 가능한 직업 글씨 스타일 */
+.job-link {
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
+}
+
+.job-link:hover {
+    color: #60a5fa !important;
+    transform: scale(1.05);
+}
